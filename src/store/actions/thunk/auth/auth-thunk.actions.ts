@@ -33,3 +33,16 @@ export const loginUser = createAsyncThunk(
     }
   }
 );
+
+export const getUserByToken = createAsyncThunk(
+  'auth/getUser',
+  async (_, { rejectWithValue }) => {
+    try {
+      const res = await api.get('auth/');
+      return res.data;
+    } catch (error) {
+      const err = error as AxiosError;
+      return rejectWithValue(err.response?.data);
+    }
+  }
+);
