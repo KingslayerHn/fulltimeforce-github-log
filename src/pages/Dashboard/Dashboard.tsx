@@ -3,9 +3,21 @@ import moment from 'moment';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
 
 import useDashboardState from './state/useDashboardState';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
+import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
   const { user, repository, commits } = useDashboardState();
+
+  const { user: userState } = useSelector((state: RootState) => state.auth);
+
+  const navigate = useNavigate();
+
+  if (!userState) {
+    navigate('/');
+  }
+
   return (
     <Grid width={'100%'} height="100vh" bgcolor={'#22272E'} pt={10}>
       <Container sx={{ display: 'flex', flexDirection: 'row' }}>
