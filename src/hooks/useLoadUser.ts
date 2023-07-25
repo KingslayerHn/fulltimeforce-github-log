@@ -11,7 +11,7 @@ const useLoadUser = () => {
         .dispatch(getUserByToken())
         .unwrap()
         .catch(() => {
-          localStorage.remove('fulltimeforce_token');
+          localStorage.removeItem('fulltimeforce_token');
         });
     }
   }, []);
