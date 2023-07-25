@@ -18,14 +18,14 @@ const useDashboardState = () => {
 
     const getUserRepository = async () => {
       const res = await axios.get(
-        `${config.baseUrl}/repos/KingslayerHn/frontend-home-task`
+        `${config.baseUrl}/repos/KingslayerHn/fulltimeforce-github-log`
       );
       setRepository(res.data);
     };
 
     const getCommits = async () => {
       const res = await axios.get(
-        `${config.baseUrl}/repos/KingslayerHn/frontend-home-task/commits`
+        `${config.baseUrl}/repos/KingslayerHn/fulltimeforce-github-log/commits`
       );
       setCommits(res.data);
     };
