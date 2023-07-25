@@ -1,6 +1,7 @@
 import { Grid, Typography, Button, Box } from '@mui/material';
 import Github from '../../assets/Github.png';
 import { SignUpInterface } from './SignUpInterface';
+
 const Signup = ({ isLogin, handleIsLoginChange }: SignUpInterface) => {
   return (
     <Grid display={'flex'} direction="column" flex={1} height={'100%'}>
