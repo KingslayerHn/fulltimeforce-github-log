@@ -25,6 +25,8 @@ export const authReducer = createSlice({
         state.isLoading = false;
         state.token = token;
         state.user = user;
+
+        localStorage.setItem('fulltimeforce_token', token);
       }
     );
 
@@ -34,6 +36,7 @@ export const authReducer = createSlice({
 
     builder.addCase(createUser.rejected, (state) => {
       state.isLoading = false;
+      localStorage.removeItem('fulltimeforce_token');
     });
 
     // login users cases
@@ -47,6 +50,7 @@ export const authReducer = createSlice({
         state.isLoading = false;
         state.token = token;
         state.user = user;
+        localStorage.setItem('fulltimeforce_token', token);
       }
     );
 
@@ -56,6 +60,7 @@ export const authReducer = createSlice({
 
     builder.addCase(loginUser.rejected, (state) => {
       state.isLoading = false;
+      localStorage.removeItem('fulltimeforce_token');
     });
   },
 });

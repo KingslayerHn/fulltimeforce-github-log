@@ -7,6 +7,7 @@ import Login from '../../components/Login/Login';
 
 const Home = () => {
   const { isLogin, handleIsLoginChange } = useHomeState();
+
   return (
     <Grid flex={1} sx={HomeStyles.bg}>
       <LoginLayout
