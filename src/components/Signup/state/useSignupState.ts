@@ -3,6 +3,7 @@ import { emailRegex, passwordRegex } from '../../../utils/regex';
 import { useAppDispatch } from '../../../store/hook/hook';
 import { useFormik } from 'formik';
 import { createUser } from '../../../store/actions/thunk/auth/auth-thunk.actions';
+import { useNavigate } from 'react-router-dom';
 
 const validationSchema = Yup.object({
   firstName: Yup.string().required('* Campo requerido'),
@@ -18,6 +19,7 @@ const validationSchema = Yup.object({
 
 const useSignupState = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const formik = useFormik({
     validationSchema,
@@ -31,7 +33,7 @@ const useSignupState = () => {
       dispatch(createUser(values))
         .unwrap()
         .then((res) => {
-          console.log(res);
+          navigate('/home');
         })
         .catch((err) => {
           console.log(err);
