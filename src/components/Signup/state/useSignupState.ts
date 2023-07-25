@@ -2,6 +2,7 @@ import * as Yup from 'yup';
 import { emailRegex, passwordRegex } from '../../../utils/regex';
 import { useAppDispatch } from '../../../store/hook/hook';
 import { useFormik } from 'formik';
+import { createUser } from '../../../store/actions/thunk/auth/auth-thunk.actions';
 
 const validationSchema = Yup.object({
   firstName: Yup.string().required('* Campo requerido'),
@@ -16,7 +17,7 @@ const validationSchema = Yup.object({
 });
 
 const useSignupState = () => {
-  //   const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
 
   const formik = useFormik({
     validationSchema,
@@ -26,7 +27,16 @@ const useSignupState = () => {
       email: '',
       password: '',
     },
-    onSubmit: () => {},
+    onSubmit: (values) => {
+      dispatch(createUser(values))
+        .unwrap()
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
   });
 
   return {

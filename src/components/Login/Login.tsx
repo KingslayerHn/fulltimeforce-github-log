@@ -48,6 +48,7 @@ const Login = ({ isLogin, handleIsLoginChange }: LoginInterface) => {
             name="firstName"
             label="firstName"
             variant="outlined"
+            onChange={formik.handleChange}
             value={formik.values.firstName}
             error={formik.touched.firstName && Boolean(formik.errors.firstName)}
             helperText={formik.touched.firstName && formik.errors.firstName}
@@ -56,6 +57,7 @@ const Login = ({ isLogin, handleIsLoginChange }: LoginInterface) => {
             name="lastName"
             label="lastName"
             variant="outlined"
+            onChange={formik.handleChange}
             value={formik.values.lastName}
             error={formik.touched.lastName && Boolean(formik.errors.lastName)}
             helperText={formik.touched.lastName && formik.errors.lastName}
@@ -64,6 +66,7 @@ const Login = ({ isLogin, handleIsLoginChange }: LoginInterface) => {
             name="email"
             label="email"
             variant="outlined"
+            onChange={formik.handleChange}
             value={formik.values.email}
             error={formik.touched.email && Boolean(formik.errors.email)}
             helperText={formik.touched.email && formik.errors.email}
@@ -73,6 +76,7 @@ const Login = ({ isLogin, handleIsLoginChange }: LoginInterface) => {
             label="password"
             variant="outlined"
             type="password"
+            onChange={formik.handleChange}
             value={formik.values.password}
             error={formik.touched.password && Boolean(formik.errors.password)}
             helperText={formik.touched.password && formik.errors.password}
