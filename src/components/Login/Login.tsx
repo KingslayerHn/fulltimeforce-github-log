@@ -2,9 +2,12 @@ import { LoginInterface } from './LoginInterface';
 import { Grid, Typography, TextField, Button } from '@mui/material';
 import theme from '../../theme';
 import useSignupState from '../Signup/state/useSignupState';
+import useLoginState from '../Signup/state/useLoginState';
 
 const Login = ({ isLogin, handleIsLoginChange }: LoginInterface) => {
   const { formik } = useSignupState();
+
+  const { formik: formikLogin } = useLoginState();
   return (
     <Grid
       alignItems={'center'}
@@ -23,14 +26,46 @@ const Login = ({ isLogin, handleIsLoginChange }: LoginInterface) => {
         </Typography>
       </Grid>
       {isLogin ? (
-        <Grid display={'flex'} direction="column" width={'100%'} rowGap={1}>
-          <TextField label="Email" variant="outlined" />
-          <TextField label="password" variant="outlined" type="password" />
+        <Grid
+          display={'flex'}
+          direction="column"
+          width={'100%'}
+          rowGap={1}
+          component={'form'}
+          onSubmit={formikLogin.handleSubmit}
+        >
+          <TextField
+            label="Email"
+            variant="outlined"
+            name="email"
+            value={formikLogin.values.email}
+            onChange={formikLogin.handleChange}
+            error={
+              formikLogin.touched.email && Boolean(formikLogin.errors.email)
+            }
+            helperText={formikLogin.touched.email && formikLogin.errors.email}
+          />
+          <TextField
+            label="password"
+            variant="outlined"
+            type="password"
+            name="password"
+            value={formikLogin.values.password}
+            onChange={formikLogin.handleChange}
+            error={
+              formikLogin.touched.password &&
+              Boolean(formikLogin.errors.password)
+            }
+            helperText={
+              formikLogin.touched.password && formikLogin.errors.password
+            }
+          />
           <Button
             sx={{
               width: '100%',
               height: 45,
             }}
+            type="submit"
           >
             Sign in
           </Button>
